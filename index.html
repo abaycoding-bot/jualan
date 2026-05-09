@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stride • Sepatu Keren untuk Setiap Langkah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; }
+    .heading-font { font-family: 'Playfair Display', sans-serif; }
+    
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=2000') center/cover no-repeat;
+    }
+    
+    .product-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #000;
+      transition: all 0.3s;
+    }
+    
+    .nav-link:hover:after {
+      width: 100%;
+    }
+    
+    .cart-count {
+      animation: pop 0.3s ease;
+    }
+    
+    @keyframes pop {
+      0% { transform: scale(0.8); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-800">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-9 h-9 bg-black rounded-2xl flex items-center justify-center text-white font-bold text-2xl">S</div>
+          <span class="heading-font text-3xl font-bold tracking-tight">stride</span>
+        </a>
+        
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#" class="nav-link">Beranda</a>
+          <a href="#shop" class="nav-link">Toko</a>
+          <a href="#" class="nav-link">Kategori</a>
+          <a href="#" class="nav-link">Best Seller</a>
+          <a href="#" class="nav-link">Promo</a>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <div class="relative hidden md:block">
+          <input type="text" id="search" 
+                 class="bg-zinc-100 border border-zinc-200 rounded-full pl-10 py-3 w-72 focus:outline-none focus:border-black text-sm"
+                 placeholder="Cari sepatu...">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-zinc-400"></i>
+        </div>
+
+        <button onclick="toggleCart()" class="relative p-3 hover:bg-zinc-100 rounded-2xl transition">
+          <i class="fa-solid fa-bag-shopping text-2xl"></i>
+          <span id="cart-count" class="cart-count absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+        </button>
+        
+        <button class="w-10 h-10 bg-zinc-200 rounded-2xl overflow-hidden">
+          <img src="https://i.pravatar.cc/128" alt="Profile" class="w-full h-full object-cover">
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg h-screen flex items-center text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-xl">
+        <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none mb-6">
+          LANGKAH<br>YANG <span class="text-amber-400">KEREN</span>
+        </h1>
+        <p class="text-xl mb-10 text-zinc-200">
+          Sepatu premium dengan desain kekinian. Nyaman, stylish, dan cocok untuk gaya hidupmu.
+        </p>
+        <div class="flex gap-4">
+          <a href="#shop" 
+             class="px-10 py-4 bg-white text-black font-semibold rounded-3xl hover:bg-amber-400 hover:text-white transition text-lg">
+            Belanja Sekarang
+          </a>
+          <button onclick="document.getElementById('best-seller').scrollIntoView({ behavior: 'smooth' })"
+                  class="px-8 py-4 border-2 border-white font-medium rounded-3xl hover:bg-white/10 transition">
+            Lihat Koleksi
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KATEGORI -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center heading-font">Pilih Gaya Kamu</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="group cursor-pointer">
+          <div class="h-80 bg-zinc-200 rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a9c?w=800" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Sneakers">
+          </div>
+          <p class="text-center mt-4 font-medium">Sneakers</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-80 bg-zinc-200 rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Running">
+          </div>
+          <p class="text-center mt-4 font-medium">Running</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-80 bg-zinc-200 rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Casual">
+          </div>
+          <p class="text-center mt-4 font-medium">Casual</p>
+        </div>
+        <div class="group cursor-pointer">
+          <div class="h-80 bg-zinc-200 rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=800" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Formal">
+          </div>
+          <p class="text-center mt-4 font-medium">Formal</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLER -->
+  <section id="best-seller" class="py-20 bg-zinc-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="text-4xl font-bold heading-font">Best Seller</h2>
+        <a href="#shop" class="flex items-center gap-2 hover:text-amber-500 transition">
+          Lihat semua <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Products will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold heading-font text-center mb-12">Apa Kata Mereka</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-zinc-50 p-8 rounded-3xl">
+          <p class="italic">"Sepatu paling nyaman yang pernah saya pakai. Sudah 3 bulan masih bagus banget!"</p>
+          <div class="mt-8 flex items-center gap-3">
+            <img src="https://i.pravatar.cc/64?u=1" class="w-10 h-10 rounded-2xl" alt="">
+            <div>
+              <p class="font-semibold">Rizky Pratama</p>
+              <p class="text-sm text-zinc-500">Jakarta</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-zinc-50 p-8 rounded-3xl">
+          <p class="italic">"Desainnya keren, cocok buat daily. Banyak temen yang nanya beli dimana."</p>
+          <div class="mt-8 flex items-center gap-3">
+            <img src="https://i.pravatar.cc/64?u=2" class="w-10 h-10 rounded-2xl" alt="">
+            <div>
+              <p class="font-semibold">Sinta Dewi</p>
+              <p class="text-sm text-zinc-500">Bandung</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-zinc-50 p-8 rounded-3xl">
+          <p class="italic">"Pengiriman cepat, kualitas sesuai ekspektasi. Recommended!"</p>
+          <div class="mt-8 flex items-center gap-3">
+            <img src="https://i.pravatar.cc/64?u=3" class="w-10 h-10 rounded-2xl" alt="">
+            <div>
+              <p class="font-semibold">Adi Nugroho</p>
+              <p class="text-sm text-zinc-500">Surabaya</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP SECTION -->
+  <section id="shop" class="py-20 bg-zinc-900 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold heading-font mb-12 text-center">Koleksi Terbaru</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="all-products">
+        <!-- More products injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-9 h-9 bg-white rounded-2xl flex items-center justify-center text-black font-bold text-2xl">S</div>
+          <span class="heading-font text-3xl font-bold">stride</span>
+        </div>
+        <p class="text-zinc-400">Sepatu berkualitas untuk gaya hidup modern Indonesia.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Belanja</h4>
+        <ul class="space-y-3 text-zinc-400">
+          <li><a href="#" class="hover:text-white">Sneakers</a></li>
+          <li><a href="#" class="hover:text-white">Running Shoes</a></li>
+          <li><a href="#" class="hover:text-white">Casual</a></li>
+          <li><a href="#" class="hover:text-white">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+        <ul class="space-y-3 text-zinc-400">
+          <li><a href="#" class="hover:text-white">Tracking Order</a></li>
+          <li><a href="#" class="hover:text-white">Pengembalian</a></li>
+          <li><a href="#" class="hover:text-white">FAQ</a></li>
+          <li><a href="#" class="hover:text-white">Hubungi Kami</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Newsletter</h4>
+        <p class="text-sm text-zinc-400 mb-4">Dapatkan promo eksklusif dan koleksi terbaru.</p>
+        <div class="flex">
+          <input type="email" placeholder="Email kamu" 
+                 class="bg-zinc-900 border border-zinc-700 px-4 py-3 rounded-l-3xl text-sm focus:outline-none w-full">
+          <button class="bg-white text-black px-8 rounded-r-3xl font-medium">Kirim</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-zinc-500 text-sm mt-16">
+      © 2026 Stride. Dibuat dengan ❤️ untuk pecinta sepatu Indonesia.
+    </div>
+  </footer>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-end md:items-center justify-center">
+    <div class="bg-white w-full max-w-lg md:rounded-3xl h-[90vh] md:h-auto overflow-hidden flex flex-col">
+      <div class="p-6 border-b flex justify-between items-center">
+        <h3 class="text-2xl font-bold">Keranjang Belanja</h3>
+        <button onclick="toggleCart()" class="text-3xl leading-none">×</button>
+      </div>
+      
+      <div id="cart-items" class="flex-1 overflow-auto p-6 space-y-6">
+        <!-- Cart items injected by JS -->
+      </div>
+      
+      <div class="p-6 border-t">
+        <div class="flex justify-between text-lg mb-6">
+          <span class="font-medium">Total</span>
+          <span id="cart-total" class="font-bold">Rp 0</span>
+        </div>
+        <button onclick="checkout()" 
+                class="w-full bg-black text-white py-4 rounded-3xl font-semibold text-lg hover:bg-amber-500 transition">
+          Checkout Sekarang
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tailwind script already loaded
+
+    const products = [
+      {
+        id: 1,
+        name: "Velocity Runner",
+        price: 899000,
+        category: "Running",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800"
+      },
+      {
+        id: 2,
+        name: "Urban Classic",
+        price: 649000,
+        category: "Sneakers",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+      },
+      {
+        id: 3,
+        name: "Eclipse Low",
+        price: 1299000,
+        category: "Casual",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c?w=800"
+      },
+      {
+        id: 4,
+        name: "Summit Trail",
+        price: 799000,
+        category: "Hiking",
+        image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800"
+      },
+      {
+        id: 5,
+        name: "Neo Court",
+        price: 549000,
+        category: "Casual",
+        image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=800"
+      },
+      {
+        id: 6,
+        name: "Pulse Boost",
+        price: 1099000,
+        category: "Running",
+        image: "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=800"
+      }
+    ];
+
+    let cart = [];
+
+    function formatPrice(price) {
+      return "Rp " + price.toLocaleString('id-ID');
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('product-grid');
+      container.innerHTML = '';
+
+      products.forEach(product => {
+        const card = `
+          <div class="product-card bg-white rounded-3xl overflow-hidden">
+            <div class="h-64 bg-zinc-200">
+              <img src="${product.image}" class="w-full h-full object-cover" alt="${product.name}">
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-amber-500 font-medium">${product.category}</p>
+              <h3 class="font-semibold text-lg mt-1">${product.name}</h3>
+              <div class="flex justify-between items-end mt-4">
+                <p class="text-xl font-bold">${formatPrice(product.price)}</p>
+                <button onclick="addToCart(${product.id})" 
+                        class="bg-black text-white px-6 py-2 rounded-2xl text-sm font-medium hover:bg-amber-500 transition">
+                  + Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+    }
+
+    function renderAllProducts() {
+      const container = document.getElementById('all-products');
+      container.innerHTML = '';
+
+      products.forEach(product => {
+        const card = `
+          <div class="product-card bg-zinc-800 rounded-3xl overflow-hidden">
+            <div class="h-64 bg-zinc-700">
+              <img src="${product.image}" class="w-full h-full object-cover" alt="${product.name}">
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-amber-400 font-medium">${product.category}</p>
+              <h3 class="font-semibold text-lg mt-1 text-white">${product.name}</h3>
+              <div class="flex justify-between items-end mt-4">
+                <p class="text-xl font-bold text-white">${formatPrice(product.price)}</p>
+                <button onclick="addToCart(${product.id})" 
+                        class="bg-white text-black px-6 py-2 rounded-2xl text-sm font-medium hover:bg-amber-400 transition">
+                  Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+      } else {
+        cart.push({...product, quantity: 1});
+      }
+
+      updateCartCount();
+      
+      // Toast notification
+      const toast = document.createElement('div');
+      toast.className = "fixed bottom-8 right-8 bg-black text-white px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-3 z-[200]";
+      toast.innerHTML = `
+        <i class="fa-solid fa-check text-green-400"></i>
+        <span>${product.name} ditambahkan ke keranjang</span>
+      `;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => toast.remove(), 2500);
+    }
+
+    function updateCartCount() {
+      let count = 0;
+      cart.forEach(item => count += item.quantity || 1);
+      document.getElementById('cart-count').textContent = count;
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      container.innerHTML = '';
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-20 text-zinc-400">
+            <i class="fa-solid fa-bag-shopping text-6xl mb-6"></i>
+            <p>Keranjang kamu kosong</p>
+          </div>
+        `;
+        document.getElementById('cart-total').textContent = 'Rp 0';
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * (item.quantity || 1);
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = "flex gap-4";
+        div.innerHTML = `
+          <img src="${item.image}" class="w-24 h-24 object-cover rounded-2xl" alt="">
+          <div class="flex-1">
+            <h4 class="font-medium">${item.name}</h4>
+            <p class="text-sm text-zinc-500">${item.category}</p>
+            <p class="font-bold mt-1">${formatPrice(item.price)}</p>
+            
+            <div class="flex items-center gap-4 mt-3">
+              <button onclick="changeQuantity(${index}, -1)" class="w-8 h-8 border flex items-center justify-center rounded-xl">-</button>
+              <span class="font-medium w-6 text-center">${item.quantity || 1}</span>
+              <button onclick="changeQuantity(${index}, 1)" class="w-8 h-8 border flex items-center justify-center rounded-xl">+</button>
+            </div>
+          </div>
+          <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-600">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('cart-total').textContent = formatPrice(total);
+    }
+
+    function changeQuantity(index, change) {
+      cart[index].quantity = (cart[index].quantity || 1) + change;
+      if (cart[index].quantity < 1) cart[index].quantity = 1;
+      renderCart();
+      updateCartCount();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+      updateCartCount();
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) {
+        renderCart();
+      }
+    }
+
+    function checkout() {
+      if (cart.length === 0) return;
+      alert("🎉 Terima kasih! Pesanan kamu sedang diproses. (Demo)");
+      cart = [];
+      updateCartCount();
+      toggleCart();
+    }
+
+    // Initialize
+    window.onload = function() {
+      renderProducts();
+      renderAllProducts();
+      updateCartCount();
+      
+      // Search functionality
+      document.getElementById('search').addEventListener('keyup', function(e) {
+        const term = e.target.value.toLowerCase();
+        const filtered = products.filter(p => 
+          p.name.toLowerCase().includes(term) || 
+          p.category.toLowerCase().includes(term)
+        );
+        
+        // For demo, just alert
+        if (e.key === "Enter" && term.length > 2) {
+          alert("Hasil pencarian untuk: " + ter
